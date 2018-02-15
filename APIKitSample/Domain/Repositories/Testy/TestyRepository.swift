@@ -12,10 +12,9 @@ import RxSwift
 struct TestyRespository {
     
     static let shared = TestyRespository()
+    private init() {}
     
     var testy: Observable<Testy> {
-        return Session.shared.rx.response(SampleApi.TestyRequest()).map {
-            Testy(entity: $0)
-        }
+        return Session.shared.rx.response(SampleApi.TestyRequest()).map(Testy.init)
     }
 }
